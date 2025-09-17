@@ -19,10 +19,15 @@
       }
 
       if (Object.keys(payload).length > 0) {
-        // Send back to Flutter via custom scheme
-        const redirect = "myapp://auth_callback?" + 
-          new URLSearchParams(payload).toString();
-        window.location.href = redirect;
+        // 👇 Print out the token or code in the console
+        console.log("Auth payload:", payload);
+
+        // 👇 Also show it in the page (for debugging)
+        document.body.innerHTML = `<pre>${JSON.stringify(payload, null, 2)}</pre>`;
+
+        // If you still want to redirect back to Flutter, keep this line
+        // const redirect = "myapp://auth_callback?" + new URLSearchParams(payload).toString();
+        // window.location.href = redirect;
       } else {
         document.body.innerHTML = "<p>No auth response found.</p>";
       }
